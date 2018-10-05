@@ -11,13 +11,13 @@ import VeeElement from 'vee-element'
 import validator from './config/validator'
 
 // config
-import { useVee} from './config/site'
+import { useVee } from './config/site'
 
 // plugins
 Vue.use(ElementUI, { locale })
 
 // for the demo, optionally include the vee validate plugin
-if(useVee) {
+if (useVee) {
   Vue.use(VeeElement, validator)
 }
 
