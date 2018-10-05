@@ -10,13 +10,19 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VeeElement from 'vee-element'
 import validator from './config/validator'
 
+// config
+import { useVee} from './config/site'
+
 // plugins
 Vue.use(ElementUI, { locale })
 
 // for the demo, optionally include the vee validate plugin
-if(window.location.href.includes('vee')) {
+if(useVee) {
   Vue.use(VeeElement, validator)
 }
+
+// additional config
+Vue.config.devtools = true
 
 // vue
 new Vue({

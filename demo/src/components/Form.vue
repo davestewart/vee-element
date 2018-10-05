@@ -2,6 +2,17 @@
 <template>
   <el-form :model="form" :rules="rules" ref="form" label-width="120px" class="demo-form">
 
+    <el-form-item v-if="status">
+      <el-alert
+        show-icon
+        size="small"
+        :title="status"
+        :closable="!errors"
+        :type="errors ? 'error' : 'success'"
+        @close="status = ''"
+      />
+    </el-form-item>
+
     <el-form-item label="Name" prop="name">
       <el-input v-model="form.name"/>
     </el-form-item>
@@ -13,7 +24,7 @@
     <el-form-item label="When" required>
       <el-col :span="11">
         <el-form-item prop="when.date">
-          <el-date-picker type="date" v-model="form.when.date" style="width: 100%;" />
+          <el-date-picker type="date" v-model="form.when.date" style="width: 100%;"/>
         </el-form-item>
       </el-col>
       <el-col class="line" :span="1" style="text-align: center">-</el-col>
@@ -62,6 +73,8 @@ export default {
 
   data () {
     return {
+      status: '',
+      errors: '',
       form: {
         name: '',
         region: '',
@@ -83,9 +96,12 @@ export default {
       form
         .validate(valid => {
           if (valid) {
-            this.$alert('Your data has been submitted, thank you!', 'Success')
+            this.status = 'Your data has been submitted, thank you!'
+            this.errors = false
+            this.reset()
           } else {
-            console.log('The form did not validate!')
+            this.status = 'Your data has errors; please correct them and submit again'
+            this.errors = true
             return false
           }
         })

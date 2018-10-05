@@ -31,6 +31,7 @@
 <script>
 import ExampleForm from './Form'
 import rules from '../config/rules'
+import { useVee } from '../config/site'
 
 export default {
   components: {
@@ -40,9 +41,7 @@ export default {
   data () {
     return {
       validator: {
-        use: window.location.href.includes('vee')
-          ? 'vee'
-          : 'async'
+        use: useVee ? 'vee' : 'async'
       }
     }
   },
