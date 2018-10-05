@@ -24,13 +24,13 @@
     <el-form-item label="When" required>
       <el-col :span="11">
         <el-form-item prop="when.date">
-          <el-date-picker type="date" v-model="form.when.date" style="width: 100%;"/>
+          <el-date-picker type="date" placeholder="Date" v-model="form.when.date" style="width: 100%;"/>
         </el-form-item>
       </el-col>
-      <el-col class="line" :span="1" style="text-align: center">-</el-col>
+      <el-col class="line" :span="2" style="text-align: center">-</el-col>
       <el-col :span="11">
         <el-form-item prop="when.time">
-          <el-time-picker type="fixed-time" v-model="form.when.time" style="width: 100%;"/>
+          <el-time-picker type="fixed-time" placeholder="Time" v-model="form.when.time" style="width: 100%;"/>
         </el-form-item>
       </el-col>
     </el-form-item>

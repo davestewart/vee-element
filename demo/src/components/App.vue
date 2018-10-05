@@ -83,7 +83,7 @@ export default {
   }
 
   #app {
-    max-width: 800px;
+    max-width: 650px;
     margin: auto;
   }
 
@@ -101,18 +101,28 @@ export default {
     margin-left: 130px;
   }
 
-  p {
-    font-size: 1.2em;
+  .el-form > .el-form-item {
+    margin-bottom: 30px;
+  }
+
+  .el-form-item__error {
+    padding-left: 4px;
   }
 
   .el-checkbox-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: .5em;
   }
 
   .el-checkbox {
     display: inline-block;
     width: auto;
+    height: 2em;
+  }
+
+  .el-checkbox:last-child {
+    margin-bottom: .5em;
   }
 
   .el-checkbox + .el-checkbox {
