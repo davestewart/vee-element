@@ -9,5 +9,6 @@ module.exports = {
   extends: 'standard',
   rules: {
     'comma-dangle': 0,
+    'padded-blocks': 0,
   }
 }

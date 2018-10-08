@@ -12,58 +12,19 @@
     </header>
 
     <div class="header">
-      <el-form :model="validator" ref="form" label-width="120px" class="demo-form">
-        <el-form-item label="Validator">
-          <el-radio-group @change="use" v-model="validator.use" size="small">
-            <el-radio-button label="async">Async Validator</el-radio-button>
-            <el-radio-button label="vee">Vee Validate</el-radio-button>
-          </el-radio-group>
-        </el-form-item>
-      </el-form>
+      <Chooser/>
     </div>
 
-    <main>
-      <ExampleForm :rules="rules"/>
-    </main>
+    <router-view></router-view>
   </main>
 </template>
 
 <script>
-import ExampleForm from './Form'
-import rules from '../config/rules'
-import { useVee } from '../config/site'
+import Chooser from './Chooser'
 
 export default {
   components: {
-    ExampleForm
-  },
-
-  data () {
-    return {
-      validator: {
-        use: useVee ? 'vee' : 'async'
-      }
-    }
-  },
-
-  computed: {
-    rules () {
-      return this.$options.components.ElFormItem.options.veeValidate
-        ? rules.vee
-        : rules.element
-    }
-  },
-
-  mounted () {
-    console.log(this.rules)
-  },
-
-  methods: {
-    use () {
-      setTimeout(() => {
-        window.location.href = '?' + this.validator.use
-      }, 350)
-    }
+    Chooser
   }
 }
 </script>

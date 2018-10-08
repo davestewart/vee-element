@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './components/App.vue'
+import { router } from './config/routes'
 
 // element ui
 import ElementUI from 'element-ui'
@@ -10,21 +11,15 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VeeElement from 'vee-element'
 import validator from './config/validator'
 
-// config
-import { useVee } from './config/site'
-
 // plugins
 Vue.use(ElementUI, { locale })
-
-// for the demo, optionally include the vee validate plugin
-if (useVee) {
-  Vue.use(VeeElement, validator)
-}
+Vue.use(VeeElement, validator)
 
 // additional config
 Vue.config.devtools = true
 
 // vue
 new Vue({
+  router,
   render: h => h(App)
 }).$mount('#app')

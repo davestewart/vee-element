@@ -1,6 +1,6 @@
 {
   "name": "vee-element",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Replaces Element UI's validation engine with Vee Validate",
   "author": "Dave Stewart",
   "homepage": "https://davestewart.github.io/vee-element/",
