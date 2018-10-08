@@ -1,78 +1,51 @@
-import get from 'object-get'
-import { noop } from 'element-ui/src/utils/util'
-
-function isEmpty (value) {
-  return value === void 0 ||
-    value === null ||
-    value === ''
-}
+import VeeDriver from './drivers/vee'
+import AsyncDriver from './drivers/async'
 
 export default function (Vue, validator) {
-  // setup
-  const ElFormItem = Vue.options.components.ElFormItem
-  const options = ElFormItem.options
+  // form
+  Vue.options.components.ElForm.options.props.driver = {
+    type: String,
+    default: 'async'
+  }
 
-  // flag
-  options.veeValidate = true
+  // form item
+  const options = Vue.options.components.ElFormItem.options
+
+  // drivers
+  const drivers = {
+    async: new AsyncDriver(options),
+    vee: new VeeDriver(validator),
+  }
 
   // props
-  options.props.rules = String
+  Object.assign(options.props, {
+    rules: [Object, String, Array],
+    driver: String
+  })
 
   // computed
   options.computed.isRequired = function () {
-    return /\brequired\b/.test(this.getRules())
+    return this.getDriver().isRequired.apply(this)
   }
 
   // methods
   Object.assign(options.methods, {
-    validate (trigger, callback = noop) {
 
-      // this.validateDisabled = false
-      if (trigger === 'blur' && !isEmpty(this.fieldValue)) {
-        return
-      }
+    getDriver () {
+      return drivers[this.form.driver || 'async']
+    },
 
-      const rules = this.getRules()
-      if (!rules) {
-        callback()
-      }
-
-      // this.validateState = 'validating'
-      validator
-        .verify(this.fieldValue, rules)
-        .then(({ valid, errors }) => {
-          // variables
-          const prop = this.prop
-          const error = errors[0]
-          const errorField = error ? error.replace('The {field}', 'This') : ''
-          const errorForm = error ? error.replace('{field}', prop) : null
-          const invalidFields = {
-            [prop]: [{
-              field: prop,
-              message: errorForm
-            }]
-          }
-
-          // update
-          this.validateState = valid ? 'success' : 'error'
-          this.validateMessage = errorField
-
-          // respond
-          callback(errorForm, invalidFields)
-          this.elForm && this.elForm.$emit('validate', prop, !errors, errorForm)
-        })
+    validate (trigger, callback) {
+      const driver = this.getDriver()
+      return driver.validate.apply(this, [trigger, callback, driver]) // pass driver as 3rd argument to get around binding
     },
 
     getRules () {
-      return this.rules
-        ? this.rules
-        : this.prop
-          ? get(this.form.rules, this.prop) || ''
-          : ''
+      return this.getDriver().getRules.apply(this)
     },
 
-    getFilteredRule () {
-      return this.getRules()
+    getFilteredRule (trigger) {
+      return this.getDriver().getFilteredRule.apply(this, [trigger])
     }
   })
 }
