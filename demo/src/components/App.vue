@@ -12,85 +12,98 @@
     </header>
 
     <div class="header">
-      <Chooser/>
+      <Navigation/>
     </div>
 
-    <router-view></router-view>
+    <router-view/>
   </main>
 </template>
 
 <script>
-import Chooser from './Chooser'
+import Navigation from './Navigation'
 
 export default {
   components: {
-    Chooser
-  }
+    Navigation
+  },
 }
 </script>
 
-<style>
-  html, body {
-    padding: 0;
-    margin: 0;
-  }
+<style lang="scss">
+html, body {
+  padding: 0;
+  margin: 0;
+}
 
-  body {
-    padding: 20px;
-    font-family: 'Source Sans Pro', 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-  }
+body {
+  padding: 20px;
+  font-family: 'Source Sans Pro', 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  overflow-y: scroll;
+}
 
-  #app {
-    max-width: 650px;
-    margin: auto;
-  }
+#app {
+  max-width: 650px;
+  margin: auto;
+}
 
-  h1, h2, h3 {
-    font-weight: 400;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
+h1, h2, h3 {
+  font-weight: 400;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 
-  .header {
-    margin-bottom: 2em;
-  }
+h2 {
+  color: #333;
+}
 
-  header.header {
-    margin-left: 130px;
-  }
+.header {
+  margin-bottom: 2em;
+}
 
-  .el-form > .el-form-item {
-    margin-bottom: 30px;
-  }
+header.header {
+  margin-left: 130px;
+}
 
-  .el-form-item__error {
-    padding-left: 4px;
-  }
+.el-form > .el-form-item {
+  margin-bottom: 30px;
+}
 
-  .el-checkbox-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: .5em;
-  }
+.el-form-item__error {
+  padding-left: 4px;
+}
 
-  .el-checkbox {
-    display: inline-block;
-    width: auto;
-    height: 2em;
-  }
+.el-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: .5em;
+}
 
-  .el-checkbox:last-child {
-    margin-bottom: .5em;
-  }
+.el-checkbox {
+  display: inline-block;
+  width: auto;
+  height: 2em;
+}
 
-  .el-checkbox + .el-checkbox {
-    margin-left: 0 !important;
-  }
+.el-checkbox:last-child {
+  margin-bottom: .5em;
+}
 
-  a, a:link, a:visited {
-    color: #409EFF;
-  }
+.el-checkbox + .el-checkbox {
+  margin-left: 0 !important;
+}
+
+a, a:link, a:visited {
+  color: #409EFF;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 </style>

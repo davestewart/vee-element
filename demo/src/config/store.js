@@ -5,7 +5,7 @@ const localStorage = window.localStorage
 export default new Vue({
   data () {
     return {
-      driver: localStorage.getItem('driver') || 'async'
+      driver: localStorage.getItem('driver') || 'vee'
     }
   },
 

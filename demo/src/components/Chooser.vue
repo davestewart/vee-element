@@ -22,5 +22,11 @@ export default {
 </script>
 
 <style>
+  .switch {
+    text-align: right;
+  }
 
+  .el-switch__label * {
+    color: #303133;
+  }
 </style>
