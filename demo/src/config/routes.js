@@ -9,10 +9,6 @@ function route (path, component) {
   return { path, component }
 }
 
-function redirect (path, redirect) {
-  return { path, redirect }
-}
-
 const routes = [
   route('/', Home),
   route('/simple', SimpleForm),
