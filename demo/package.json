@@ -12,7 +12,8 @@
     "object-get": "^2.1.0",
     "vee-element": "^1.0.0-alpha",
     "vee-validate": "^2.1.0-beta.9",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.4",
