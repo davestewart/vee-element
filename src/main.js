@@ -1,17 +1,18 @@
 import VeeDriver from './drivers/vee'
 import AsyncDriver from './drivers/async'
 
-export default function (Vue, validator) {
+export default function (Vue, validator, asDefault = true) {
+
   // form
-  Vue.options.components.ElForm.options.props.driver = {
-    type: String,
-    default: 'async'
-  }
+  Vue.options.components.ElForm.options.props.driver = String
 
   // form item
   const options = Vue.options.components.ElFormItem.options
 
   // drivers
+  const defaultDriver = asDefault
+    ? 'vee'
+    : 'async'
   const drivers = {
     async: new AsyncDriver(options),
     vee: new VeeDriver(validator),
@@ -32,7 +33,7 @@ export default function (Vue, validator) {
   Object.assign(options.methods, {
 
     getDriver () {
-      return drivers[this.form.driver || 'async']
+      return drivers[this.form.driver || defaultDriver]
     },
 
     validate (trigger, callback) {

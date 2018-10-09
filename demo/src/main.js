@@ -13,7 +13,7 @@ import validator from './config/validator'
 
 // plugins
 Vue.use(ElementUI, { locale })
-Vue.use(VeeElement, validator)
+Vue.use(VeeElement, validator, true)
 
 // additional config
 Vue.config.devtools = true
