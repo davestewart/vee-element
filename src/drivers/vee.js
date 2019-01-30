@@ -31,7 +31,7 @@ export default class VeeDriver {
         const theField = 'The {field} field'
         const thisField = validator.dictionary.getAttribute(validator.dictionary.locale, theField) || 'This field'
         const errorField = error
-          ? error.replace(theField, thisField)
+          ? error.replace(theField, thisField).replace('{field}', `"${prop}"`)
           : ''
         const errorForm = error
           ? error.replace('{field}', `"${prop}"`)
