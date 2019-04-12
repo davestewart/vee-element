@@ -28,8 +28,10 @@ export default class VeeDriver {
         const error = errors[0]
 
         // generate error messages
-        const theField = 'The {field} field'
-        const thisField = validator.dictionary.getAttribute(validator.dictionary.locale, theField) || 'This field'
+        const THE_FIELD = 'The {field} field';
+        const THIS_FIELD = 'This field';
+        const theField = validator.dictionary.getAttribute(validator.dictionary.locale, THE_FIELD) || THE_FIELD;
+        const thisField = validator.dictionary.getAttribute(validator.dictionary.locale, THIS_FIELD) || THIS_FIELD;
         const errorField = error
           ? error.replace(theField, thisField)
           : ''
