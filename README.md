@@ -39,7 +39,7 @@ Vee Element is a Vue plugin. It needs to be installed after Element UI, and conf
 // import plugins
 import ElementUI from 'element-ui'
 import VeeValidate from 'vee-validate'
-import VeeElement from './vee-element'
+import VeeElement from 'vee-element'
 
 // configure validator
 const rules = {
