@@ -26,6 +26,7 @@ export default class VeeDriver {
         // variables
         const prop = this.prop
         const error = errors[0]
+        const label = (this.label) ? this.label : this.prop
 
         // generate error messages
         const THE_FIELD = 'The {field} field';
@@ -36,7 +37,7 @@ export default class VeeDriver {
           ? error.replace(theField, thisField)
           : ''
         const errorForm = error
-          ? error.replace('{field}', `"${prop}"`)
+          ? error.replace('{field}', `"${label}"`)
           : null
         const invalidFields = {}
         if (!valid) {
@@ -49,7 +50,7 @@ export default class VeeDriver {
 
         // update
         this.validateState = valid ? 'success' : 'error'
-        this.validateMessage = errorField
+        this.validateMessage = errorForm
 
         // respond
         callback(errorForm, invalidFields)
