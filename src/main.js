@@ -27,26 +27,26 @@ export default function (Vue, validator, asDefault = true) {
 
     computed: {
       isRequired () {
-        return this.getDriver().isRequired.apply(this)
+        return this.selectedDriver.isRequired.apply(this)
+      },
+
+      selectedDriver () {
+        return drivers[this.form.driver || defaultDriver]
       }
     },
 
     methods: {
-      getDriver () {
-        return drivers[this.form.driver || defaultDriver]
-      },
-
       validate (trigger, callback) {
-        const driver = this.getDriver()
+        const driver = this.selectedDriver
         return driver.validate.apply(this, [trigger, callback, driver]) // pass driver as 3rd argument to get around binding
       },
 
       getRules () {
-        return this.getDriver().getRules.apply(this)
+        return this.selectedDriver.getRules.apply(this)
       },
 
       getFilteredRule (trigger) {
-        return this.getDriver().getFilteredRule.apply(this, [trigger])
+        return this.selectedDriver.getFilteredRule.apply(this, [trigger])
       }
     }
   })
