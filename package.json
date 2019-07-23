@@ -25,6 +25,7 @@
     "dev": "rollup -c build/rollup.js -w",
     "build": "rollup -c build/rollup.js",
     "demo": "cd demo && npm run serve",
+    "prepare": "npm run build",
     "lint": "./node_modules/.bin/eslint src/*",
     "test": "jest --watchAll --verbose",
     "unit": "jest --config jest.config.js --coverage"
