@@ -18,26 +18,22 @@ export default class VeeDriver {
       callback()
     }
 
+    const verifyOptions = {
+      name: this.label,
+    }
+
     // this.validateState = 'validating'
     const validator = driver.validator
     validator
-      .verify(this.fieldValue, rules)
+      .verify(this.fieldValue, rules, verifyOptions)
       .then(({ valid, errors }) => {
         // variables
         const prop = this.prop
         const error = errors[0]
 
         // generate error messages
-        const THE_FIELD = 'The {field} field';
-        const THIS_FIELD = 'This field';
-        const theField = validator.dictionary.getAttribute(validator.dictionary.locale, THE_FIELD) || THE_FIELD;
-        const thisField = validator.dictionary.getAttribute(validator.dictionary.locale, THIS_FIELD) || THIS_FIELD;
-        const errorField = error
-          ? error.replace(theField, thisField)
-          : ''
-        const errorForm = error
-          ? error.replace('{field}', `"${prop}"`)
-          : null
+        const errorField = error || ''
+        const errorForm = error || null
         const invalidFields = {}
         if (!valid) {
           invalidFields[prop] = [{
