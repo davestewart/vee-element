@@ -54,11 +54,17 @@ export default class VeeDriver {
   }
 
   getRules () {
-    return this.rules
+    const rules = this.rules
       ? this.rules
       : this.prop
         ? get(this.form.rules, this.prop) || ''
         : ''
+
+    if (typeof rules === 'object' && !Array.isArray(rules)) {
+      Object.defineProperty(rules, 'length', { value: 1 })
+    }
+
+    return rules
   }
 
   getFilteredRule () {
