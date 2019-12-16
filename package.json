@@ -1,6 +1,6 @@
 {
   "name": "vee-element",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.5",
   "description": "Replaces Element UI's validation engine with Vee Validate",
   "author": "Dave Stewart",
   "homepage": "https://davestewart.github.io/vee-element/",
@@ -24,7 +24,8 @@
   "scripts": {
     "dev": "rollup -c build/rollup.js -w",
     "build": "rollup -c build/rollup.js",
-    "demo": "cd demo && npm run dev",
+    "demo": "cd demo && npm run serve",
+    "prepare": "npm run build",
     "lint": "./node_modules/.bin/eslint src/*",
     "test": "jest --watchAll --verbose",
     "unit": "jest --config jest.config.js --coverage"
@@ -45,6 +46,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^23.4.1",
+    "rollup": "^1.17.0",
     "rollup-plugin-buble": "^0.19.1",
     "rollup-plugin-commonjs": "^8.4.1",
     "rollup-plugin-license": "^0.6.0",

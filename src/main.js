@@ -7,46 +7,47 @@ export default function (Vue, validator, asDefault = true) {
   Vue.options.components.ElForm.options.props.driver = String
 
   // form item
-  const options = Vue.options.components.ElFormItem.options
+  const ElFormItem = Vue.options.components.ElFormItem
 
   // drivers
   const defaultDriver = asDefault
     ? 'vee'
     : 'async'
   const drivers = {
-    async: new AsyncDriver(options),
+    async: new AsyncDriver(ElFormItem.options),
     vee: new VeeDriver(validator),
   }
 
   // props
-  Object.assign(options.props, {
-    rules: [Object, String, Array],
-    driver: String
-  })
-
-  // computed
-  options.computed.isRequired = function () {
-    return this.getDriver().isRequired.apply(this)
-  }
-
-  // methods
-  Object.assign(options.methods, {
-
-    getDriver () {
-      return drivers[this.form.driver || defaultDriver]
+  Vue.options.components.ElFormItem = ElFormItem.extend({
+    props: {
+      rules: [Object, String, Array],
+      driver: String
     },
 
-    validate (trigger, callback) {
-      const driver = this.getDriver()
-      return driver.validate.apply(this, [trigger, callback, driver]) // pass driver as 3rd argument to get around binding
+    computed: {
+      isRequired () {
+        return this.selectedDriver.isRequired.apply(this)
+      },
+
+      selectedDriver () {
+        return drivers[this.form.driver || defaultDriver]
+      }
     },
 
-    getRules () {
-      return this.getDriver().getRules.apply(this)
-    },
+    methods: {
+      validate (trigger, callback) {
+        const driver = this.selectedDriver
+        return driver.validate.apply(this, [trigger, callback, driver]) // pass driver as 3rd argument to get around binding
+      },
 
-    getFilteredRule (trigger) {
-      return this.getDriver().getFilteredRule.apply(this, [trigger])
+      getRules () {
+        return this.selectedDriver.getRules.apply(this)
+      },
+
+      getFilteredRule (trigger) {
+        return this.selectedDriver.getFilteredRule.apply(this, [trigger])
+      }
     }
   })
 }

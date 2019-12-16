@@ -8,7 +8,7 @@ import locale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css'
 
 // vee element
-import VeeElement from 'vee-element'
+import VeeElement from '../../src/main'
 import validator from './config/validator'
 
 // plugins
