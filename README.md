@@ -13,10 +13,6 @@ Using the Vee Validate driver allows you to set up rules in Element UI like this
 
 ## Demo
 
-View the online demo at:
-
-- [vee-element.netlify.com](https://vee-element.netlify.com)
-
 To run the demo locally, see the demo folder:
 
 - [/demo](demo)
