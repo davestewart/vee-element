@@ -16,6 +16,7 @@ export default class VeeDriver {
     const rules = this.getRules()
     if (!rules) {
       callback()
+      return;
     }
 
     const verifyOptions = {
